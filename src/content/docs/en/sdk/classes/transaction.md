@@ -119,15 +119,4 @@ Parameters:
 - resultCode: Terminal result code.
 
 ## Diagram of the transaction flow
-```mermaid
-flowchart TD
-    A[Transaction creation] --> B[Payment Initialized]
-    B --> C{Communication with terminal}
-    C -->|Input| D[Process commands]
-    D --> C
-    C -->|Payment finished| E[Payment result]
-    E -->|Success| F[Confirm payment]
-    E -->|Failure| G[Rollback payment]
-    F --> H[Transaction completed]
-    G --> H
- ```
+![fluxograma](/src/assets/fluxograma-ingles.png)

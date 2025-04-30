@@ -120,15 +120,4 @@ Parâmetros:
 
 
 ## Diagrama do fluxo de transação
-```mermaid
-flowchart TD
-    A[Criar Transaction] --> B[Inicializar Payment]
-    B --> C{Comunicação com terminal}
-    C -->|Input| D[Processar comandos]
-    D --> C
-    C -->|Pagamento finalizado| E[Resultado do pagamento]
-    E -->|Sucesso| F[Confirmar pagamento]
-    E -->|Falha| G[Estornar pagamento]
-    F --> H[Transação concluída]
-    G --> H
- ```
+![fluxograma](/src/assets/fluxograma-portugues.png)
