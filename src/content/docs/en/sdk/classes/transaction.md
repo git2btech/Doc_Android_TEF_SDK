@@ -16,7 +16,7 @@ To type a variable that will hold an instance of this class you can import its i
 
 When instantiated this class:
 1. Configures itself with relevant details such as date, time, etc. at the moment of its creation.
-2. Initiates the payment process using the [payment](/en/sdk/classes/payment) class.
+2. Initiates the payment process using the [payment](/Doc_Android_TEF_SDK/en/sdk/classes/payment) class.
 
 ### Properties
 

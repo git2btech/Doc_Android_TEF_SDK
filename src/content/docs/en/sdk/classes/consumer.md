@@ -17,7 +17,7 @@ fun setup(context: Context)
 Initializes the payment library, should only be called **only once** during the application flow, preferably in the entry point of your application (e.g.: `MainActivity.kt`).
 
 :::note[Under the hood]
-This function will load the system usage license configured by the [app](/en/app/introduction) and also initialize the communication library with the pinpad through the `Payment.configure()` method.
+This function will load the system usage license configured by the [app](/Doc_Android_TEF_SDK/en/app/introduction) and also initialize the communication library with the pinpad through the `Payment.configure()` method.
 :::
 
 Parameters:
@@ -93,7 +93,7 @@ Parameters:
 
 
 Returns:
-- Transaction: Instantiated [Transaction](/en/sdk/classes/transaction) class.
+- Transaction: Instantiated [Transaction](/Doc_Android_TEF_SDK/en/sdk/classes/transaction) class.
 
 Throws:
 - IllegalStateException: if a transaction is already in progress.

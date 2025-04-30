@@ -6,8 +6,9 @@ import rehypeMermaid from 'rehype-mermaid'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://git2btech.github.io',
+  base: '/Doc_Android_TEF_SDK',
   redirects: {
-    "/": "/en",
+    "/": "/Doc_Android_TEF_SDK/en",
   },
   devToolbar: {
     enabled: false

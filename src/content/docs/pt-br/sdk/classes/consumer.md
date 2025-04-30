@@ -15,7 +15,7 @@ A classe Consumer é o ponto inicial da biblioteca, ela abrange *inicialização
   Inicializa à biblioteca de pagamento, só deve ser chamada **apenas uma vez** durante o fluxo da sua aplicação, de preferência no arquivo de entrada da sua aplicação(ex: `MainActivity.kt`).
 
 :::note[Funcionamento interno]
-Internamente essa função ira carregar a licensa de uso configurada pelo [app](/pt-br/app/introduction) e também inicializará a biblioteca de comunicação com o pinpad através do método `Payment.configure()`.
+Internamente essa função ira carregar a licensa de uso configurada pelo [app](/Doc_Android_TEF_SDK/pt-br/app/introduction) e também inicializará a biblioteca de comunicação com o pinpad através do método `Payment.configure()`.
 :::
 
 Parâmetros:
@@ -87,7 +87,7 @@ Parâmetros:
 - cb: Função callback que recebe um boolean indicando se a transação concluiu com sucesso ou falha.
 
 Retorna:
-- Transaction: Classe já instanciada de [Transaction](/pt-br/sdk/classes/transaction)
+- Transaction: Classe já instanciada de [Transaction](/Doc_Android_TEF_SDK/pt-br/sdk/classes/transaction)
 
 
 Throws:

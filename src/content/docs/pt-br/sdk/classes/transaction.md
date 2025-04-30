@@ -17,7 +17,7 @@ Para tipar uma variável que guardará uma instância da classe Transaction voc�
 Ao ser instânciada essa classe:
 
 1. Configura à sí mesma com data, hora e outros detalhes relevantes no momento da sua criação.
-2. Inicia o processo de pagamento utilizando a classe [payment](/pt-br/sdk/classes/payment).
+2. Inicia o processo de pagamento utilizando a classe [payment](/Doc_Android_TEF_SDK/pt-br/sdk/classes/payment).
 
 ### Propriedades
 

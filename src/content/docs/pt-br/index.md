@@ -7,5 +7,5 @@ hero:
     file: ../../../assets/logo.png
   actions:
     - text: introdução
-      link: /pt-br/introduction
+      link: /Doc_Android_TEF_SDK/pt-br/introduction
 ---
