@@ -82,7 +82,7 @@ Parâmetros:
 - context: Contexto android.
 - transactionId: Identificador da transação
 - transactionProductId: Identificador do produto envolvido na transação
-- transactionPrice: Preço que deve ser cobrado no pinpad
+- transactionPrice: Preço da transação com dígitos decimais separados por ".", não ","(ex. "1.50")
 - paymentMethod: Método de pagamento para usar (ex: *"credit"*, *"debit"*)
 - cb: Função callback que recebe um boolean indicando se a transação concluiu com sucesso ou falha.
 

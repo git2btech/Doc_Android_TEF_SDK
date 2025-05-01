@@ -87,7 +87,7 @@ Parameters:
 - context: Android Context.
 - transactionId: Transaction identifier.
 - transactionProductId: Product identifier.
-- transactionPrice: Transaction price.
+- transactionPrice: Transaction price with decimal digits separated by ".", not ","(eg. "1.50").
 - paymentMethod: Payment method to use (ex: *"credit"*, *"debit"*).
 - cb: Callback function that receives a boolean indicating if the transaction was successful or not.
 
