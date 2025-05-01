@@ -3,8 +3,8 @@ title: Transaction
 ---
 A classe Transaction gerencia a lógica singular de cada processo de pagamento, oferecendo métodos para controlar o rumo do fluxo de pagamento da transação. Essa classe também implementa o listener que vai ser chamado à cada atualização do processo de pagamento.
 
-:::note[Uso interno]
-Essa classe é de uso interno da biblioteca.
+:::caution[Uso gerenciado]
+Essa classe está disponível para uso gerenciado.
 :::
 
 :::tip[Interface]
@@ -23,10 +23,7 @@ Ao ser instânciada essa classe:
 
 | Propriedade | Tipo | Descrição |
 | -------- | ---- | ----------- |
-| id | String | identificador da transação |
-| product | String | identificador do produto envolvido na transação |
-| price | String | preço que deve ser cobrado no pinpad |
-| paymentMethod | Int | código do método de pagamento para usar |
+| transactionData | TransactionData | informações coletadas do fluxo de pagamento |
 | abortAsap | Boolean | flag para abortar transação |
 
 

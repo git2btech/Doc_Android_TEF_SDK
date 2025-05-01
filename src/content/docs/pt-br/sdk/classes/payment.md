@@ -7,7 +7,7 @@ A classe Payment fornece o mais baixo accesso à biblioteca de comunicação com
 Essa classe é de uso interno da biblioteca.
 :::
 
-### Propriedades
+<!-- ### Propriedades
 
 | Propriedade | Tipo | Descrição |
 | -------- | ---- | ----------- |
@@ -99,4 +99,4 @@ Payment.submitPayment(
 
  :::tip[Integração com CliSiTef]
 A classe Payment abstrai a complexidade da biblioteca CliSiTef, proporcionando uma interface mais simples para iniciar um novo pagamento com as informações da licença.
-:::
+::: -->

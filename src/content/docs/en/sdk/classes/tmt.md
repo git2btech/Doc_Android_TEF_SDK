@@ -7,7 +7,7 @@ The class TMT (Telemetry) is responsible for managing communication with the 2BT
 This class is used internally by the library.
 :::
 
-### Methods
+<!-- ### Methods
 
 ---
 
@@ -36,4 +36,4 @@ Returns:
 - Int: License status code
   - 1: Valid license
   - -1: Invalid license
-  - 0: Failed to check license validity
+  - 0: Failed to check license validity -->

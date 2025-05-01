@@ -11,7 +11,7 @@ The Consumer class is the entry point of the library, it covers *initialization*
 #### setup
 
 ```kotlin
-fun setup(context: Context)
+fun setup(context: Context, androidSerialNumber: String)
 ```
 
 Initializes the payment library, should only be called **only once** during the application flow, preferably in the entry point of your application (e.g.: `MainActivity.kt`).
@@ -22,10 +22,11 @@ This function will load the system usage license configured by the [app](/Doc_An
 
 Parameters:
 - context: Android Context.
+- androidSerialNumber: The unique android device serial number.
 
 Example:
 ```kotlin
-Consumer.setup(this.application.Context)
+Consumer.setup(this.application.Context, "1234567890")
 ```
 
 :::caution[setup dependency]
@@ -37,10 +38,12 @@ Almost all other functions and classes of this library expect that `setup()` has
 #### checkServiceAvailability
 
 ```kotlin
-fun checkServiceAvailability(context: Context): Boolean
+suspend fun checkServiceAvailability(context: Context): Boolean
 ```
 
 Checks if the payment service is available, should be used ideally before displaying to client available payment options.
+
+This function signatures includes `suspend` since it depends on async calls, therefore the developer is responsible for calling it outside the main thread to avoid layout freezes. 
 
 Parameters:
 - context: Android Context.
@@ -53,17 +56,25 @@ Returns:
 Example:
 
 ```kotlin
-if (!Consumer.checkServiceAvailability(this.application.Context)) {
-    // Do something if the service is unavailable.
+// Checking if payment service is available using coroutine
+lifecycleScope.launch {
+    val isServiceAvailable = Consumer.checkServiceAvailability(applicationContext)
+    
+    creditButton.isEnabled = isServiceAvailable > 0
+    debitButton.isEnabled = isServiceAvailable > 0
+    
+    if (isServiceAvailable < 1) {
+        Toast.makeText(this@MainActivity, "Payment service is not available", Toast.LENGTH_LONG).show()
+    }
 }
 ```
 
 :::note[Under the hood]
 This function will check if the payment service is available by checking if the following conditions are met:
 - The library has been initialized;
-- A license has been found locally;
-- A pinpad has been recognized as connected to the device;
-- The license attached to the device has been verified as valid in the TMT(Telemetria).
+- A 2BTech license has been found locally;
+- A pinpad has been recognized as connected to the android device;
+- The license attached to the device has been verified as valid in the remotely;
 :::
 
 ---
@@ -111,9 +122,9 @@ val transaction = Consumer.startNewTransaction(
     "credit",
     { success ->
         if (success) {
-            // Do something after the payment is made
+            // Do something if the payment is successful
         } else {
-            // Do something after the payment fails
+            // Do something if the payment fails
         }
     }
 )
@@ -124,11 +135,5 @@ Remember not to discard the **transaction** instance returned by `startNewTransa
 :::
 
 :::tip[Current Transaction]
-The Consumer class keeps internally a reference to the current transaction (currentTransaction), which is cleared automatically when this transaction is completed (successfully or not). This prevents multiple transactions from happening at the same time.
-:::
-
-:::note[Payment Methods]
-Payment methods are mapped to internal codes:
-- "credit" → 3
-- "debit" → 2
+The Consumer class keeps internally a reference to the current transaction, which is cleared automatically when this transaction is completed (successfully or not). This prevents multiple transactions from happening at the same time.
 :::

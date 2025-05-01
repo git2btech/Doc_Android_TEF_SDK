@@ -6,7 +6,7 @@ Essa classe gerencia a leitura e escrita à licença de uso do sistema que pode 
 :::note[Uso interno]
 Essa classe é de uso interno da biblioteca.
 :::
-
+<!-- 
 ### Classes de Dados
 
 #### License
@@ -97,4 +97,4 @@ Configuration.setConfig(newConfig)
 
  :::note[Detalhes da implementação]
 A classe `Configuration` usa um **content provider** para recuperar e salvar informações da licença do sistema. Ela também implementa um sistema de cache interno para não ser preciso fazer a leitura do sistema à cada chamada de `getConfig`.
-:::
+::: -->

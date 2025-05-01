@@ -67,7 +67,7 @@ export default defineConfig({
             {
               label: 'Classes', translations: { 'pt-BR': 'Classes' }, items: [
                 { slug: 'sdk/classes/consumer', label: 'Consumer' },
-                { slug: 'sdk/classes/transaction', label: 'Transaction', badge: { text: 'I', variant: 'default' } },
+                { slug: 'sdk/classes/transaction', label: 'Transaction', badge: { text: 'M', variant: 'caution' } },
                 { slug: 'sdk/classes/configuration', label: 'Configuration', badge: { text: 'I', variant: 'default' } },
                 { slug: 'sdk/classes/payment', label: 'Payment', badge: { text: 'I', variant: 'default' } },
                 { slug: 'sdk/classes/tmt', label: 'TMT', badge: { text: 'I', variant: 'default' } },

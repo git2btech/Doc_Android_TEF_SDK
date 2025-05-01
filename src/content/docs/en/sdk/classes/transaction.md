@@ -4,8 +4,8 @@ title: Transaction
 
 The Transaction class manages the logic of a single payment process, offering methods to control the flow of the payment transaction. This class also implements a listener that will be called at each update of the payment process.
 
-:::note[Internal Usage]
-This class is used internally by the library.
+:::caution[Managed Usage]
+This class is available for managed use.
 :::
 
 :::tip[Interface]
@@ -22,10 +22,7 @@ When instantiated this class:
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| id | String | transaction id |
-| product | String | product id |
-| price | String | price to be paid |
-| paymentMethod | Int | payment method code |
+| transactionData | TransactionData | collected payment flow information |
 | abortAsap | Boolean | flag to abort transaction |
 
 

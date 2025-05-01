@@ -7,7 +7,7 @@ Essa classe é responsável por gerenciar a comunicação com o sistema Telemetr
 Essa classe é de uso interno da biblioteca.
 :::
 
-### Métodos
+<!-- ### Métodos
 
 ---
 
@@ -38,4 +38,4 @@ Retorna:
 - Int: Código de status da licença
   - 1: Licença válida
   - -1: Licença Inválida
-  - 0: Falha ao checar validade da licença
+  - 0: Falha ao checar validade da licença -->

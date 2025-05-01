@@ -3,10 +3,10 @@ title: Configuration
 ---
 This class manages reading and writing the system usage license which may or may not exist on the device.
 
-:::note[Internal use]
-This class is for internal library use only.
+:::note[Internal usage]
+This class is used internally by the library.
 :::
-
+<!-- 
 ### Data Classes
 
 #### License
@@ -96,4 +96,4 @@ Configuration.setConfig(newConfig)
 
 :::note[Implementation details]
 The `Configuration` class uses a **content provider** to retrieve and save system license information. It also implements an internal cache system to avoid having to read the system every time `getConfig` is called.
-:::
+::: -->

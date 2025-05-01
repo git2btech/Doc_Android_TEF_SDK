@@ -9,7 +9,7 @@ A classe Consumer é o ponto inicial da biblioteca, ela abrange *inicialização
 
 #### setup
   ```kotlin
-  fun setup(context: Context)
+  fun setup(context: Context, androidSerialNumber: String)
   ```
 
   Inicializa à biblioteca de pagamento, só deve ser chamada **apenas uma vez** durante o fluxo da sua aplicação, de preferência no arquivo de entrada da sua aplicação(ex: `MainActivity.kt`).
@@ -20,10 +20,11 @@ Internamente essa função ira carregar a licensa de uso configurada pelo [app](
 
 Parâmetros:
 - context: Contexto android.
+- androidSerialNumber: Número de série unico do dispositivo Android.
 
 Exemplo:
 ```kotlin
-Consumer.setup(this.application.Context)
+Consumer.setup(this.application.Context, "1234567890")
 ```
 
 :::caution[dependência do setup]
@@ -34,9 +35,11 @@ Quase todas outras funções e classes da biblioteca esperam que `setup()` já t
 
 #### checkServiceAvailability
 ```kotlin
-  fun checkServiceAvailability(context: Context): Boolean
-  ```
+suspend fun checkServiceAvailability(context: Context): Boolean
+```
 Verifica a disponibilidade do serviço de pagamento, deve ser utilizado idealmente antes de mostrar ao cliente final quais opções de pagamento estão disponíveis.
+
+A assinatura dessa função incluí `suspend` já que ela depende de chamadas assíncronas, por isso o desenvolvedor fica reponsável for chamá-la fora da thread principal a fim de evitar congelamento de layout.
 
 Parâmetros:
 - context: Contexto android.
@@ -48,17 +51,25 @@ Retorna:
 
 Exemplo:
 ```kotlin
-if (!Consumer.checkServiceAvailability(this.application.Context)) {
-    // Fazer alguma coisa caso o serviço de pagamento esteja indisponível.
+// Checando se o serviço de pagamento está disponível usando corrotinas
+lifecycleScope.launch {
+  val isServiceAvailable = Consumer.checkServiceAvailability(applicationContext)
+  
+  creditButton.isEnabled = isServiceAvailable > 0
+  debitButton.isEnabled = isServiceAvailable > 0
+  
+  if (isServiceAvailable < 1) {
+      Toast.makeText(this@MainActivity, "Serviço de pagamento não está disponível", Toast.LENGTH_LONG).show()
+  }
 }
 ```
 
 :::note[Funcionamento interno]
 Essa função só retornará `false` caso: 
 - A biblioteca não tenha sido inicializada; 
-- Não seja encontrada uma licensa atrelada ao equipamento localmente; 
+- Não seja encontrada uma licensa 2BTech atrelada ao equipamento localmente; 
 - Nenhum pinpad tenha sido reconhecido como conectado ao dispositivo; 
-- A licensa atrelada ao equipamento tenha sido verificada como inválida no TMT(Telemetria).
+- A licensa atrelada ao equipamento tenha sido verificada como inválida remotamente.
 :::
 
 ---
@@ -106,9 +117,9 @@ val transaction = Consumer.startNewTransaction(
     "credit",
     { success ->
         if (success) {
-            // Fazer algo após o pagamento ser feito
+            // Fazer algo se o pagamento for concluído
         } else {
-            // Fazer algo após o pagamento falhar
+            // Fazer algo se o pagamento falhar
         }
     }
 )
@@ -119,12 +130,5 @@ Lembre-se de não descartar a instância de **transaction** retornada por `start
 :::
 
 :::tip[Transação Atual]
-A classe Consumer mantém internamente uma referência à transação atual (currentTransaction), que é limpa automaticamente quando essa transação é concluída (com sucesso ou falha). Isso impede que múltiplas transações existam simultaneamente.
-:::
-
-:::note[Métodos de Pagamento]
-Os métodos de pagamento são mapeados para códigos internos:
-
-- "credit" → 3
-- "debit" → 2
+A classe Consumer mantém internamente uma referência à transação atual, que é limpa automaticamente quando essa transação é concluída (com sucesso ou falha). Isso impede que múltiplas transações existam simultaneamente.
 :::
