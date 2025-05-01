@@ -60,6 +60,11 @@ export default defineConfig({
               }, link: '/sdk/introduction'
             },
             {
+              slug: 'sdk/integration', label: 'Integration', translations: {
+                'pt-BR': 'Integração',
+              }, link: '/sdk/integration'
+            },
+            {
               label: 'Classes', translations: { 'pt-BR': 'Classes' }, items: [
                 { slug: 'sdk/classes/consumer', label: 'Consumer' },
                 { slug: 'sdk/classes/transaction', label: 'Transaction', badge: { text: 'I', variant: 'default' } },
